@@ -20,4 +20,4 @@ app.get("/", (req, res) => {
   res.status(200).render("index");
 });
 
-app.listen(3000, "192.168.0.105", console.log("Listening on port 3000!"));
+app.listen(3000, console.log("Listening on port 3000!"));
