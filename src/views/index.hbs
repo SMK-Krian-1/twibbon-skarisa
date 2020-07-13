@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+    <title>#SkarisaLuarBiasa</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.16.0/css/mdb.min.css" rel="stylesheet">
+    <style>
+        .custom-file,
+        #inputGambar,
+        .upload-btn {
+            cursor: pointer;
+        }
+
+        canvas {
+            width: 360px;
+            height: 1px;
+        }
+
+        .slider {
+            display: none;
+        }
+
+        .download-btn {
+            display: none;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-12 d-flex justify-content-center">
+            <img src="/assets/skarisa-logo.png" width="256px" height="auto" />
+        </div>
+        <h1 class="text-center">Twibbon PPDB SKARISA</h1>
+        <h6 class="text-center">Agar hasil maksimal, gunakan foto berskala 1:1.</h6>
+        <hr />
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 col-lg-5 form-input">
+                <div class="input-group">
+                    <div class="input-group-prepend upload-btn">
+                        <span class="input-group-text upload-btn" onclick="generate();">Buat Twibbon</span>
+                    </div>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="inputGambar" accept="image/*" />
+                        <label class="custom-file-label">Pilih Foto</label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+                <button onclick="downloadImage();" type="button" class="btn btn-primary px-3 download-btn"><i
+                        class="fas fa-file-download"></i> Download</button>
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+                <canvas id="generated" width="1080" height="1080"></canvas>
+            </div>
+            <div class="col-12 col-lg-4 text-center slider">
+                <label for="posX">Posisi X</label>
+                <input type="range" class="custom-range" step="5" min="0" max="50" id="posX" value="0"
+                    onchange="generate();" />
+            </div>
+            <div class="col-12 col-lg-4 text-center slider">
+                <label for="posY">Posisi Y</label>
+                <input type="range" class="custom-range" step="5" min="0" max="50" id="posY" value="0"
+                    onchange="generate();" />
+            </div>
+            <div class="col-12 col-lg-4 text-center slider">
+                <label for="ukuran">Ukuran</label>
+                <input type="range" class="custom-range" step="0.1" min="0.1" max="3.0" id="ukuran" value="1.0"
+                    onchange="generate();" />
+            </div>
+        </div>
+    </div>
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.16.0/js/mdb.min.js"></script>
+    <script>
+        let base_img = new Image();
+        base_img.src = "/assets/twibbon2.png";
+
+        function downloadImage() {
+            const canvas = document.getElementById("generated");
+            const imageToDownload = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+            const presudoLink = document.createElement('a');
+            presudoLink.href = imageToDownload;
+            presudoLink.download = 'DarjoSehat-LawanCorona.png';
+
+            document.body.appendChild(presudoLink);
+            presudoLink.click();
+            document.body.removeChild(presudoLink);
+        }
+
+        function generate() {
+            $("#generated").css("height", "360px");
+            const imageFile = document.getElementById("inputGambar").files[0];
+            if (imageFile == undefined) return alert("Mohon pilih gambar terlebih dahulu!");
+            const canvas = document.getElementById("generated");
+            const posX = document.getElementById("posX");
+            const posY = document.getElementById("posY");
+            const ukuran = document.getElementById("ukuran");
+            $(".form-input").hide();
+            const uploadedImage = new Image();
+            const reader = new FileReader();
+
+            if (imageFile) {
+                reader.readAsDataURL(imageFile);
+            }
+            reader.onload = function (e) {
+                uploadedImage.src = reader.result;
+                uploadedImage.onload = function () {
+                    posX.max = uploadedImage.width;
+                    posY.max = uploadedImage.height;
+                    posX.min = uploadedImage.width - (uploadedImage.width * 2);
+                    posY.min = uploadedImage.height - (uploadedImage.height * 2);
+                    let ctx = canvas.getContext("2d");
+                    ctx.clearRect(0, 0, 1080, 1080);
+                    ctx.drawImage(uploadedImage, posX.value, posY.value, (1080 * uploadedImage.width / uploadedImage.height) * ukuran.value, 1080 * ukuran.value);
+                    ctx.drawImage(base_img, 0, 0);
+                    $(".download-btn").show();
+                    $(".slider").show();
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
