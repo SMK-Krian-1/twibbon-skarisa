@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans&display=swap" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
@@ -34,25 +35,37 @@
             display: none;
             margin-bottom: 1rem;
         }
+        .head-text, .subhead-text {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .head-text {
+            font-size: 2rem;
+        }
+        .subhead-text {
+            font-size: .85rem;
+        }
+        .copyright-text {
+            font-family: 'Open Sans', sans-serif;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <div class="col-12 d-flex justify-content-center">
-            <img src="/assets/skarisa-logo.png" width="256px" height="auto" />
+            <img src="/assets/skarisa-logo.png" width="256px" height="256px" />
         </div>
-        <h1 class="text-center">Twibbon PPDB SKARISA</h1>
-        <h6 class="text-center">Agar hasil maksimal, gunakan foto berskala 1:1.</h6>
+        <h1 class="text-center head-text">Twibbon MPLSPDB SKARISA</h1>
+        <h6 class="text-center subhead-text">Agar hasil maksimal, gunakan foto berskala 1:1.</h6>
+      <p class="text-center text-muted small copyright-text">
+        Code with &hearts; by <a href="https://instagram.com/standinshd">standinshd | Brian</a>
+      </p>
         <hr />
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-lg-5 form-input">
                 <div class="input-group">
-                    <div class="input-group-prepend upload-btn">
-                        <span class="input-group-text upload-btn" onclick="generate();">Buat Twibbon</span>
-                    </div>
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGambar" accept="image/*" />
+                        <input type="file" class="custom-file-input" id="inputGambar" onchange="generate();" accept="image/*" />
                         <label class="custom-file-label">Pilih Foto</label>
                     </div>
                 </div>
@@ -60,6 +73,7 @@
             <div class="col-12 d-flex justify-content-center">
                 <button onclick="downloadImage();" type="button" class="btn btn-primary px-3 download-btn"><i
                         class="fas fa-file-download"></i> Download</button>
+                <button onclick="location.reload();" class="btn btn-secondary px-3 download-btn">Reset</button>
             </div>
             <div class="col-12 d-flex justify-content-center">
                 <canvas id="generated" width="1080" height="1080"></canvas>
@@ -80,13 +94,14 @@
                     onchange="generate();" />
             </div>
         </div>
+      
+      
     </div>
 
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
