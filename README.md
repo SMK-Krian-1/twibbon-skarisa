@@ -1,9 +1,14 @@
-# Twibbon SKARISA
-###### Aplikasi berbasis web untuk membuat twibbon [SMK Krian 1](https://smkkrian1.sch.id)
+# Universitas Negeri Malang Twibbon
 
-### <u>Showcase</u>
-![](https://i.ibb.co/xGYLCD5/image.png)
-##### Dapat juga di lihat di akun resmi [Instagram](https://www.instagram.com/smkkrian1) kami lalu cek foto yang ditandai!
+Kunjungi appnya di : [https://reng.my.id/twibbon-um](https://reng.my.id/twibbon-um)
 
-### <u>Lisensi</u>
-##### Aplikasi ini bebas digunakan ataupun dimodifikasi.
+Aplikasi berbasis web untuk memasang foto pada twibbon PKKMB Universitas Negeri Malang.
+
+> Cuma buat seneng-seneng. Jangan dibawa serius wkwkw
+> Feel free to hacks and forks this projects
+
+# License
+
+This project licensed under MIT Lincence.
+
+Initial codebase provided by [standinshd | Brian](https://github.com/SMK-Krian-1/twibbon-skarisa)
