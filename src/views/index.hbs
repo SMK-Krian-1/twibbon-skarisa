@@ -1,153 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
-    <title>#SkarisaLuarBiasa</title>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Open+Sans&display=swap"
-        rel="stylesheet">
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.16.0/css/mdb.min.css" rel="stylesheet">
-    <style>
-        .custom-file,
-        #inputGambar,
-        .upload-btn {
-            cursor: pointer;
-        }
+    <title>UM PKKMB Twibbon Placer</title>
 
-        canvas {
-            width: 360px;
-            height: 1px;
-        }
+    {{!-- Carbon Design System --}}
+    <link href="https://unpkg.com/carbon-components/css/carbon-components.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="/assets/style.css" rel="stylesheet">
 
-        .slider {
-            display: none;
-        }
-
-        .download-btn {
-            display: none;
-            margin-bottom: 1rem;
-        }
-
-        .head-text,
-        .subhead-text {
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .head-text {
-            font-size: 2rem;
-        }
-
-        .subhead-text {
-            font-size: .85rem;
-        }
-
-        .copyright-text {
-            font-family: 'Open Sans', sans-serif;
-        }
-
-        .indonesia-1 {
-            background: red;
-            color: black;
-            border: 1px solid black;
-            border-right: none;
-        }
-
-        .indonesia-2 {
-            background: white;
-            color: black;
-            border: 1px solid black;
-            border-left: none;
-            margin-right: 10px;
-        }
-
-        .pilih-foto {
-            display: none;
-        }
-    </style>
 </head>
 
 <body>
+
+    {{!-- Page Title --}}
     <div class="container">
-        <div class="col-12 d-flex justify-content-center">
-            <img src="/assets/skarisa-logo.png" width="256px" height="256px" />
-        </div>
-        <h1 class="text-center head-text">Twibbon MPLSPDB SKARISA</h1>
-        <h6 class="text-center subhead-text">Agar hasil maksimal, gunakan foto berskala 1:1.</h6>
-        <p class="text-center text-muted small copyright-text">
-            Code with &hearts; by <a href="https://instagram.com/standinshd">standinshd | Brian</a>
-        </p>
+        <h1 class="text-center head-text">PKKMB UM 2020 Twibbon Generator</h1>
+        <h6 class="text-center subhead-text">Gunakan foto berskala 1:1 (kotak).</h6>
         <hr />
-        <div class="col-12 d-flex justify-content-center my-2">
-            <div class="custom-control custom-radio pilih-twibbon">
-                <input type="radio" onchange="$('.pilih-foto').show();" class="custom-control-input" id="dirgahayu"
-                    name="twibbonType" value="dirgahayu">
-                <label class="custom-control-label" for="dirgahayu"><span class="indonesia-1">#Dirgahayu</span><span
-                        class="indonesia-2">Indonesia</span></label>
-            </div>
-            <div class="custom-control custom-radio pilih-twibbon">
-                <input type="radio" onchange="$('.pilih-foto').show();" class="custom-control-input" id="mplspdb"
-                    name="twibbonType" value="mpls">
-                <label class="custom-control-label" for="mplspdb">#MPLSPDBSKARSISA2020</label>
-            </div>
+    </div>
+
+    {{!-- Twibbon Selection --}}
+    <fieldset class="bx--fieldset form-input justify-content-center col-12 col-lg-4">
+        <legend class="bx--label subhead-text">Pilih Twibbon</legend>
+
+        {{!-- Test Twibbon --}}
+        <div class="bx--form-item">
+            <input class="bx--radio-button" type="radio" onchange="$('.pilih-foto').show();" id="testtwibbon"
+                name="twibbonType" value="testtwibbon" tabindex="0">
+            <label for="testtwibbon" class="bx--radio-button__label">
+                <span class="bx--radio-button__appearance"></span>
+                Test Twibbon
+            </label>
         </div>
-        <div class="row d-flex justify-content-center">
-            <div class="col-12 col-lg-5 form-input pilih-foto">
-                <div class="input-group">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGambar" onchange="generate();"
-                            accept="image/*" />
-                        <label class="custom-file-label">Pilih Foto</label>
+    </fieldset>
+
+    {{!-- Upload Handler --}}
+    <div>
+
+        {{!-- File Browser --}}
+        <div class="pilih-foto bx--form-item wrapper">
+            <h3 class="bx--file--label">Unggah Foto</h3>
+            <div class="bx--file box-file" data-file data-file-demo-state-manager>
+                <label for="inputGambar" class="bx--file-btn bx--btn bx--btn--primary" role="button" tabindex="0">
+                    <div data-file-drop-container class="bx--file__drop-container">
+                        Seret gambar atau ketuk untuk memilih foto
+                        <input type="file" class="bx--file-input" id="inputGambar" accept="image/*"
+                            onchange="generate();" />
                     </div>
-                </div>
-            </div>
-            <div class="col-12 d-flex justify-content-center">
-                <button onclick="downloadImage();" type="button" class="btn btn-primary px-3 download-btn"><i
-                        class="fas fa-file-download"></i> Download</button>
-                <button onclick="location.reload();" class="btn btn-secondary px-3 download-btn">Reset</button>
-            </div>
-            <div class="col-12 d-flex justify-content-center">
-                <canvas id="generated" width="1080" height="1080"></canvas>
-            </div>
-            <div class="col-12 col-lg-4 text-center slider">
-                <label for="posX">Posisi X</label>
-                <input type="range" class="custom-range" step="5" min="0" max="50" id="posX" value="0"
-                    onchange="generate();" />
-            </div>
-            <div class="col-12 col-lg-4 text-center slider">
-                <label for="posY">Posisi Y</label>
-                <input type="range" class="custom-range" step="5" min="0" max="50" id="posY" value="0"
-                    onchange="generate();" />
-            </div>
-            <div class="col-12 col-lg-4 text-center slider">
-                <label for="ukuran">Ukuran</label>
-                <input type="range" class="custom-range" step="0.1" min="0.1" max="3.0" id="ukuran" value="1.0"
-                    onchange="generate();" />
+                </label>
+                <div data-file-container class="bx--file-container"></div>
             </div>
         </div>
+
+        {{!-- Image Download Button --}}
+        <div class="col-12 d-flex justify-content-center">
+            <button class="bx--btn bx--btn--primary download-btn " type="button" onclick="downloadImage();">Unduh
+                Gambar</button>
+            <button class="bx--btn bx--btn--danger download-btn" aria-label="danger" type="button"
+                onclick="location.reload();">
+                Reset
+            </button>
+
+        </div>
+        <div class="col-12 d-flex justify-content-center">
+            <canvas id="generated" width="1080" height="1080"></canvas>
+        </div>
+
+        {{!-- Adjustment Tool --}}
+        {{!-- Adjust X --}}
+
+        <div class="col-12 col-lg-4 text-center slider spacer">
+            <label for="posX">Posisi X</label>
+            <input type="range" class="custom-range" step="5" min="0" max="50" id="posX" value="0"
+                onchange="generate();" />
+        </div>
+        {{!-- Adjust Y --}}
+        <div class="col-12 col-lg-4 text-center slider spacer">
+            <label for="posY">Posisi Y</label>
+            <input type="range" class="custom-range" step="5" min="0" max="50" id="posY" value="0"
+                onchange="generate();" />
+        </div>
+        {{!-- Adjust Size --}}
+        <div class="col-12 col-lg-4 text-center slider spacer">
+            <label for="ukuran">Ukuran</label>
+            <input type="range" class="custom-range" step="0.1" min="0.1" max="3.0" id="ukuran" value="1.0"
+                onchange="generate();" />
+        </div>
+    </div>
 
 
     </div>
 
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.16.0/js/mdb.min.js"></script>
     <script>
         let base_img = new Image();
 
@@ -175,6 +125,7 @@
                 const posY = document.getElementById("posY");
                 const ukuran = document.getElementById("ukuran");
                 $(".form-input").hide();
+                $(".pilih-foto").hide();
                 const uploadedImage = new Image();
                 const reader = new FileReader();
 

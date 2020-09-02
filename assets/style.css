@@ -1,0 +1,68 @@
+html {
+  margin: 4rem 1rem 4rem .5rem
+}
+
+.custom-file,
+#inputGambar,
+.upload-btn {
+  cursor: pointer;
+}
+
+canvas {
+  width: 360px;
+  height: 1px;
+}
+
+.slider {
+  display: none;
+}
+
+.download-btn {
+  display: none;
+  margin: 1rem 0.5rem 1rem 0.5rem;
+}
+
+.head-text,
+.subhead-text {
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+.head-text {
+  font-size: 2rem;
+}
+
+.subhead-text {
+  font-size: 0.85rem;
+}
+
+.pilih-foto {
+  display: none;
+}
+
+.bx--form-item {
+  margin-bottom: 1rem;
+}
+
+.subhead-text {
+  font-weight: 700;
+}
+
+.btn-cta {
+  display: inline-flex;
+}
+
+.spacer {
+    margin: 1.2rem 0rem 0rem 0rem
+}
+
+h3 {
+    font-weight: 700;
+}
+
+.box-file {
+    margin-top: 1rem
+}
+
+.wrapper {
+    margin-left: 1rem
+}
