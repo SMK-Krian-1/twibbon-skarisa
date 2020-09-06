@@ -1,2 +1,10 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+*.png binary
+*.jpg binary
+composer.lock -diff
+yarn.lock -diff
+public/build/js/*.js -diff
+public/build/css/*.css -diff
+*.map -diff
+rev-manifest.json -diff
