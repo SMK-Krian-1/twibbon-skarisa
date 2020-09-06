@@ -1,17 +1,22 @@
 {
-  "name": "twibbon-lawan_corona",
+  "name": "twibbon-placer",
   "version": "1.0.0",
-  "description": "Twibbon untuk DarjoSehat",
+  "description": "PKKMB UM 2020 Twibbon generator",
   "main": "index.js",
+  "engineStrict": true,
+  "engines": {
+    "node": "14.5.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ."
   },
-  "author": "Brian",
+  "author": "Brian & Rengga",
+  "private": true,
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "hbs": "^4.1.1"
+    "express-handlebars": "^5.1.0"
   }
 }
