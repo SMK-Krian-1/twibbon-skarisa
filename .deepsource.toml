@@ -1,0 +1,17 @@
+version = 1
+
+test_patterns = ["*/test/**"]
+
+[[analyzers]]
+name = "javascript"
+enabled = true
+
+  [analyzers.meta]
+  module_system = "es-modules"
+  environment = [
+    "nodejs",
+    "browser",
+    "jest",
+    "jquery"
+  ]
+  style_guide = "google"
