@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 setInterval(() => {
-  http.get(`http://twibbon-um.reng.my.id/`);
+  http.get(`https://twibbon-um.reng.my.id/`);
 }, 250000);
 
 app.get('/', (req, res) => {
